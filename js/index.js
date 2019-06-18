@@ -19,7 +19,6 @@ const changeColorBlk = function (event) {
   console.log('I want to change color');
 }
 
-
 // Change Navigation Link colors when hovering over
 const navLink = document.querySelectorAll('nav a');
 navLink.forEach(function(link) {
@@ -31,17 +30,7 @@ navLink.forEach(function(link) {
   })
 })
 
-// does not work
-// const resizing = window.addEventListener('resize', function(event) {
-//   event.target.style.fontsize = '45px'
-// })
-
-// const enlarge = function(event) {
-//   event.target.style.transform = 'scale(1.5)';
-// }
-
-// const images = document.querySelectorAll('img');
-// images.addEventListener('mouseover', enlarge)
+// Load Header2 in OrangeRed Color
 const headerLoad = document.querySelectorAll('h2');
 window.addEventListener('load', (event) => {
   // headerLoad[2].style.color = "red";
@@ -50,22 +39,24 @@ window.addEventListener('load', (event) => {
   })
 });
 
-// let image2 = document.querySelectorAll('.img-content')[1];
-// image2.addEventListener('mouseover', event => {
-//   event.target.style.transform = 'scale(1.5)';
-// });
-
-// image2.addEventListener('setTimeout', event => {
-//   event.target.style.transform = `scale(.6)`;
-// });
-
+// Put border of orange on all images
 let images = document.querySelectorAll('img');
 console.log(images);
-window.addEventListener('click', event => {
+window.addEventListener('scroll', event => {
   images.forEach(image => {
     image.style.border = '2px solid orange';
-  })
+  //   event.target.style.transform = 'scale(1.5)';
+    //image.style.transform = 'scale(1.5)';
 })
+})
+
+
+document.addEventListener("dragstart", function (event) {
+  // store a ref. on the dragged elem
+  dragged = event.target;
+  // make it half transparent
+  event.target.style.opacity = .5;
+}, false);
 
 const signUpBtn = document.querySelectorAll('.btn');
 signUpBtn.forEach(function(btn) {
@@ -81,7 +72,38 @@ const personalData = document.querySelectorAll('input');
 personalData.forEach(function(data) {
   data.addEventListener('wheel', alertAddMe);
   data.addEventListener('keydown', changeColorPink);
+  // data.addEventListener('click', alert);
 })
+
+// const alert = function() {
+//   alert('Please enter your data to receive more information')
+// }
+
+const body = document.querySelector('body');
+body.addEventListener('copy', event => {
+  alert('What are you trying to copy?!')
+})
+
+// does not work
+// const resizing = window.addEventListener('resize', function(event) {
+//   event.target.style.fontsize = '45px'
+// })
+
+// const enlarge = function(event) {
+//   event.target.style.transform = 'scale(1.5)';
+// }
+
+// const images = document.querySelectorAll('img');
+// images.addEventListener('mouseover', enlarge)
+
+// let image2 = document.querySelectorAll('.img-content')[1];
+// image2.addEventListener('mouseover', event => {
+//   event.target.style.transform = 'scale(1.5)';
+// });
+
+// image2.addEventListener('setTimeout', event => {
+//   event.target.style.transform = `scale(.6)`;
+// });
 
 
 // signUpBtn.forEach(btn => {
