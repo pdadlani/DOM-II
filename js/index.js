@@ -19,22 +19,18 @@ const changeColorBlk = function (event) {
   console.log('I want to change color');
 }
 
+
 // Change Navigation Link colors when hovering over
 const navLink = document.querySelectorAll('nav a');
-// navLink[0].addEventListener('click', function (e) {
-//   e.target.style.color = 'hotpink';
-//   e.stopPropagation();
-// });
 navLink.forEach(function(link) {
   link.addEventListener('mouseover', changeColorPink)
   link.addEventListener('mouseout', changeColorBlk)
-  // link.addEventListener('click', changeColorAqua)
+  link.addEventListener('click', changeColorAqua)
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+  })
 })
 
-navLink.forEach(function(link) {
-  link.addEventListener('click', changeColorAqua)
-//   link.addEventListener('click', changeColorAqua)
-})
 // does not work
 // const resizing = window.addEventListener('resize', function(event) {
 //   event.target.style.fontsize = '45px'
@@ -46,23 +42,35 @@ navLink.forEach(function(link) {
 
 // const images = document.querySelectorAll('img');
 // images.addEventListener('mouseover', enlarge)
-
-let image2 = document.querySelectorAll('.img-content')[1];
-image2.addEventListener('mouseover', event => {
-  event.target.style.transform = 'scale(1.5)';
+const headerLoad = document.querySelectorAll('h2');
+window.addEventListener('load', (event) => {
+  // headerLoad[2].style.color = "red";
+  headerLoad.forEach(header =>{
+    header.style.color = 'orangered';
+  })
 });
+
+// let image2 = document.querySelectorAll('.img-content')[1];
+// image2.addEventListener('mouseover', event => {
+//   event.target.style.transform = 'scale(1.5)';
+// });
+
 // image2.addEventListener('setTimeout', event => {
 //   event.target.style.transform = `scale(.6)`;
 // });
 
-// const signUpBtn = document.querySelector('.btn');
-// signUpBtn.addEventListener('click', function() {
-//   console.log('I was clicked');
-// });
+let images = document.querySelectorAll('img');
+console.log(images);
+window.addEventListener('click', event => {
+  images.forEach(image => {
+    image.style.border = '2px solid orange';
+  })
+})
 
 const signUpBtn = document.querySelectorAll('.btn');
 signUpBtn.forEach(function(btn) {
-  btn.addEventListener('click', changeColorPink);
+  btn.addEventListener('dblclick', changeColorBlk);
+  btn.addEventListener('click', changeColorPink)
 })
 
 const alertAddMe = function(event) {
