@@ -1,4 +1,3 @@
-// Your code goes here
 // Change color to pink
 const changeColorPink = function (event) {
   event.target.style.color = 'hotpink';
@@ -19,9 +18,33 @@ const changeColorBlk = function (event) {
   console.log('I want to change color');
 }
 
+// Scrolling changes the background color to lightblue
+// scroll event must be applied to window, not specific object
+window.addEventListener('scroll', () => {
+  document.querySelector('body').style.background = 'lightblue';
+  // once finished scrolling, background color changes to white after 3 seconds
+  setTimeout(function () {
+    document.querySelector('body').style.background = 'white';
+  }, 3000)
+})
+
+// Right-clicking deletes content
+// context menu event must be applied to window, not specific object
+window.addEventListener('contextmenu', (e) => {
+  e.target.style.display = 'none'
+})
+
 // Change Navigation Link colors when hovering over
-const navLink = document.querySelectorAll('nav a');
-navLink.forEach(function(link) {
+// const navLink = document.querySelectorAll('nav a');
+// navLink.forEach(function(link) {
+//   link.addEventListener('mouseover', changeColorPink)
+//   link.addEventListener('mouseout', changeColorBlk)
+//   link.addEventListener('click', changeColorAqua)
+//   link.addEventListener('click', function(e) {
+//     e.preventDefault();
+//   })
+// })
+document.querySelectorAll('nav a').forEach(function(link) {
   link.addEventListener('mouseover', changeColorPink)
   link.addEventListener('mouseout', changeColorBlk)
   link.addEventListener('click', changeColorAqua)
@@ -31,88 +54,89 @@ navLink.forEach(function(link) {
 })
 
 // Load Header2 in OrangeRed Color
-const headerLoad = document.querySelectorAll('h2');
-window.addEventListener('load', (event) => {
-  // headerLoad[2].style.color = "red";
-  headerLoad.forEach(header =>{
+// load event must be applied to window, not specific object
+window.addEventListener('load', () => {
+  document.querySelectorAll('h2').forEach(header =>{
     header.style.color = 'orangered';
   })
+  // give alert that page is loading
+  alert('Your page is loading!');
 });
 
-// Put border of orange on all images
-let images = document.querySelectorAll('img');
-console.log(images);
+// Put border of orange & scale on all images when scrolling for limited time
+// scroll event must be applied to window, not specific object
 window.addEventListener('scroll', event => {
-  images.forEach(image => {
+  document.querySelectorAll('img').forEach(image => {
     image.style.border = '2px solid orange';
-  //   event.target.style.transform = 'scale(1.5)';
-    //image.style.transform = 'scale(1.5)';
-})
+    image.style.transform = 'scale(1.5)';
+    // sets timer of 1.5 sec to change border and scale back to original specifications
+    setTimeout(function () {
+      image.style.border = '2px solid white';
+      image.style.transform = 'scale(1)';
+    }, 1500)
+  })
 })
 
+// changes color of paragraph text when resizing
+// resize event must be applied to window, not specific object
+window.addEventListener('resize', function (event) {
+  document.querySelectorAll('.home').forEach(item => {
+    item.style.color = 'purple';
+  })
+})
 
+// trying to figure out propagation
+window.addEventListener('resize', function (event) {
+  document.querySelectorAll('.content-pick').forEach(item => {
+    item.style.color = 'green';
+    // item.stopPropagation();
+  })
+})
+
+// changes opacity of images when dragging
 document.addEventListener("dragstart", function (event) {
-  // store a ref. on the dragged elem
+  // store a ref. on the dragged elem (if wanting to access element outside of this block of code)
   dragged = event.target;
   // make it half transparent
   event.target.style.opacity = .5;
+  // false is default argument, so do not need to include it.
 }, false);
 
+// returns opacity of images back to normal when finished dragging
+document.addEventListener('dragend', function(event) {
+  event.target.style.opacity = '1';
+}, false)
+
+// changes color of sign up button upon clicking once vs twice
 const signUpBtn = document.querySelectorAll('.btn');
 signUpBtn.forEach(function(btn) {
   btn.addEventListener('dblclick', changeColorBlk);
   btn.addEventListener('click', changeColorPink)
 })
 
-const alertAddMe = function(event) {
+// change background color to aqua
+const changeBackAqua = function(event) {
   event.target.style.backgroundColor = 'aqua';
 }
 
-const personalData = document.querySelectorAll('input');
-personalData.forEach(function(data) {
-  data.addEventListener('wheel', alertAddMe);
+// changes items in the form - background color to aqua when wheeling over it
+// - text color to pink when typing
+document.querySelectorAll('input').forEach(function(data) {
+  data.addEventListener('wheel', changeBackAqua);
   data.addEventListener('keydown', changeColorPink);
-  // data.addEventListener('click', alert);
+  //data.addEventListener('click', alert);
 })
 
-// const alert = function() {
+// const alert = () => {
 //   alert('Please enter your data to receive more information')
 // }
 
-const body = document.querySelector('body');
-body.addEventListener('copy', event => {
-  alert('What are you trying to copy?!')
+// gives an alert message when trying to copy text
+document.querySelector('body').addEventListener('copy', event => {
+  alert('What are you trying to copy?! You must give us credit.')
 })
 
-// does not work
-// const resizing = window.addEventListener('resize', function(event) {
-//   event.target.style.fontsize = '45px'
+
+// window.addEventListener('load', (e) => {
+//   window.setTimeout(() => document.getElementById('modal').classList.toggle('hide'), 3000);
 // })
-
-// const enlarge = function(event) {
-//   event.target.style.transform = 'scale(1.5)';
-// }
-
-// const images = document.querySelectorAll('img');
-// images.addEventListener('mouseover', enlarge)
-
-// let image2 = document.querySelectorAll('.img-content')[1];
-// image2.addEventListener('mouseover', event => {
-//   event.target.style.transform = 'scale(1.5)';
-// });
-
-// image2.addEventListener('setTimeout', event => {
-//   event.target.style.transform = `scale(.6)`;
-// });
-
-
-// signUpBtn.forEach(btn => {
-//   btn.addEventListener('click', event => {
-//     event.target.style = 'orange'
-//   })
-// })
-
-// navBtn.forEach(item => item.addEventListener('mouseover', event => {
-//   event.target.style = 'blue';
-// }))
-
